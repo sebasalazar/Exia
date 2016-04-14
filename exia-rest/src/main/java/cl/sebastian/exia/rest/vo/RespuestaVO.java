@@ -53,7 +53,7 @@ public class RespuestaVO extends BaseBean {
         this.fecha = new Date();
     }
 
-    @ApiModelProperty(position = 1, required = true, value = "Estado de la respuesta, por defecto es falso.")
+    @ApiModelProperty(required = true, value = "Estado de la respuesta, por defecto es falso.")
     public boolean isOk() {
         return ok;
     }
@@ -62,7 +62,7 @@ public class RespuestaVO extends BaseBean {
         this.ok = ok;
     }
 
-    @ApiModelProperty(position = 2, required = true, value = "Mensaje explicativo de la respuesta")
+    @ApiModelProperty(required = true, value = "Mensaje explicativo de la respuesta")
     public String getMensaje() {
         return mensaje;
     }
@@ -71,7 +71,7 @@ public class RespuestaVO extends BaseBean {
         this.mensaje = mensaje;
     }
 
-    @ApiModelProperty(position = 3, required = true, value = "Fecha de generación de la respuesta")
+    @ApiModelProperty(required = true, value = "Fecha de generación de la respuesta")
     public Date getFecha() {
         return fecha;
     }

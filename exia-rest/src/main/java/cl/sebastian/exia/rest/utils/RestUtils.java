@@ -187,7 +187,7 @@ public class RestUtils implements Serializable {
     public static Response error422() {
         RespuestaVO respuesta = new RespuestaVO("El objeto no pudo ser procesado");
 
-        Response.ResponseBuilder builder = Response.status(Response.Status.NOT_FOUND);
+        Response.ResponseBuilder builder = Response.status(422);
         builder.entity(respuesta);
         return builder.build();
     }
@@ -204,10 +204,37 @@ public class RestUtils implements Serializable {
         if (StringUtils.isNotBlank(mensaje)) {
             RespuestaVO respuesta = new RespuestaVO(mensaje);
 
-            Response.ResponseBuilder builder = Response.status(Response.Status.NOT_FOUND);
+            Response.ResponseBuilder builder = Response.status(422);
             salida = builder.entity(respuesta).build();
         } else {
             salida = error422();
+        }
+        return salida;
+    }
+
+    /**
+     * Crea un objeto respuesta con el error 400, indicando que el objeto tiene
+     * problemas para ser procesado.
+     *
+     * @return Response
+     */
+    public static Response error400() {
+        RespuestaVO respuesta = new RespuestaVO("La petición es inválida");
+
+        Response.ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
+        builder.entity(respuesta);
+        return builder.build();
+    }
+
+    public static Response error400(String mensaje) {
+        Response salida = null;
+        if (StringUtils.isNotBlank(mensaje)) {
+            RespuestaVO respuesta = new RespuestaVO(mensaje);
+
+            Response.ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
+            salida = builder.entity(respuesta).build();
+        } else {
+            salida = error400();
         }
         return salida;
     }

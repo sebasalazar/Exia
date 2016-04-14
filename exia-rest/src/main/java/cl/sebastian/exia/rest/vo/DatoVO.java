@@ -22,7 +22,7 @@ public class DatoVO extends BaseBean {
     private Double latitud = null;
     private Double longitud = null;
 
-    @ApiModelProperty(position = 1, required = true, value = "Identificador del Dato.")
+    @ApiModelProperty(required = true, value = "Identificador del Dato.")
     public Long getId() {
         return id;
     }
@@ -31,7 +31,7 @@ public class DatoVO extends BaseBean {
         this.id = id;
     }
 
-    @ApiModelProperty(position = 2, required = true, value = "Fecha del dato.")
+    @ApiModelProperty(required = true, value = "Fecha del dato.")
     public Date getFecha() {
         return fecha;
     }
@@ -40,7 +40,7 @@ public class DatoVO extends BaseBean {
         this.fecha = fecha;
     }
 
-    @ApiModelProperty(position = 3, required = true, value = "IP desde donde se envió el dato.")
+    @ApiModelProperty(required = true, value = "IP desde donde se envió el dato.")
     public String getIp() {
         return ip;
     }
@@ -49,7 +49,7 @@ public class DatoVO extends BaseBean {
         this.ip = ip;
     }
 
-    @ApiModelProperty(position = 4, required = true, value = "Nombre de quien envió el dato.")
+    @ApiModelProperty(required = true, value = "Nombre de quien envió el dato.")
     public String getNombre() {
         return nombre;
     }
@@ -58,7 +58,7 @@ public class DatoVO extends BaseBean {
         this.nombre = nombre;
     }
 
-    @ApiModelProperty(position = 5, required = true, value = "Rut de quien envió el dato.")
+    @ApiModelProperty(required = true, value = "Rut de quien envió el dato.")
     public String getRut() {
         return rut;
     }
@@ -67,7 +67,7 @@ public class DatoVO extends BaseBean {
         this.rut = rut;
     }
 
-    @ApiModelProperty(position = 6, required = true, value = "Valor numérico del dato.")
+    @ApiModelProperty(required = true, value = "Valor numérico del dato.")
     public BigDecimal getValor() {
         return valor;
     }
@@ -76,7 +76,7 @@ public class DatoVO extends BaseBean {
         this.valor = valor;
     }
 
-    @ApiModelProperty(position = 7, required = true, value = "Latitud del envio.")
+    @ApiModelProperty(required = true, value = "Latitud del envio.")
     public Double getLatitud() {
         return latitud;
     }
@@ -85,7 +85,7 @@ public class DatoVO extends BaseBean {
         this.latitud = latitud;
     }
 
-    @ApiModelProperty(position = 8, required = true, value = "Longitud del envio.")
+    @ApiModelProperty(required = true, value = "Longitud del envio.")
     public Double getLongitud() {
         return longitud;
     }

@@ -55,7 +55,7 @@
     <!-- CXF Swagger2Feature --> 
     <bean id="swagger2Feature" class="org.apache.cxf.jaxrs.swagger.Swagger2Feature">
         <!-- customize some of the properties -->
-        <property name="basePath" value="/rest/api/v1" />
+        <property name="basePath" value="/exia-rest/api/v1" />
         <property name="contact" value="Sebastián Salazar Molina" />
         <property name="description" value="API REST que permite acceder a la información del prototipo Exia" />
         <!-- property name="termsOfServiceUrl" value="url con los terminos de servicio" / -->

@@ -1,7 +1,6 @@
 package cl.sebastian.exia.rest.api.v1;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import javax.ws.rs.core.Response;
 
 /**
@@ -12,7 +11,7 @@ public interface ExiaRest {
 
     public Response consultarDatos();
 
-    public Response consultarDatos(Integer rut);
+    public Response consultarDatos(String rut);
 
-    public Response guardarDatos(Date fecha, String nombre, String rut, BigDecimal valor, Double latitud, Double longitud);
+    public Response guardarDatos(String fecha, String nombre, String rut, BigDecimal valor, Double latitud, Double longitud);
 }
