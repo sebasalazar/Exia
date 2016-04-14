@@ -13,6 +13,8 @@ public interface ServicioDato {
 
     public List<Dato> consultarDatos();
 
+    public List<Dato> consultarDatos(Integer rut);
+
     public Dato guardar(Dato dato);
 
     public boolean eliminar(Dato dato);

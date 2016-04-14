@@ -4,6 +4,7 @@ import cl.sebastian.exia.modelo.Dato;
 import cl.sebastian.exia.repository.DatoRepository;
 import cl.sebastian.exia.servicio.ServicioDato;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import org.slf4j.Logger;
@@ -25,23 +26,77 @@ public class ServicioDatoImpl implements ServicioDato, Serializable {
 
     @Override
     public Dato consultarDato(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Dato dato = null;
+        try {
+            if (id != null) {
+                dato = datoRepository.findOne(id);
+            }
+        } catch (Exception e) {
+            dato = null;
+            logger.error("Error al consultar dato: {}", e.toString());
+            logger.debug("Error al consultar dato: {}", e.toString(), e);
+        }
+        return dato;
     }
 
     @Override
     public List<Dato> consultarDatos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Dato> datos = new ArrayList<Dato>();
+        try {
+            datos = datoRepository.findByOrderByFechaDesc();
+        } catch (Exception e) {
+            datos = new ArrayList<Dato>();
+            logger.error("Error al consultar datos: {}", e.toString());
+            logger.debug("Error al consultar datos: {}", e.toString(), e);
+        }
+        return datos;
+    }
+
+    @Override
+    public List<Dato> consultarDatos(Integer rut) {
+        List<Dato> datos = new ArrayList<Dato>();
+        try {
+            if (rut != null) {
+                datos = datoRepository.findByRutOrderByFechaDesc(rut);
+            }
+        } catch (Exception e) {
+            datos = new ArrayList<Dato>();
+            logger.error("Error al consultar datos: {}", e.toString());
+            logger.debug("Error al consultar datos: {}", e.toString(), e);
+        }
+        return datos;
     }
 
     @Override
     @Transactional
     public Dato guardar(Dato dato) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Dato salida = null;
+        try {
+            if (dato != null) {
+                salida = datoRepository.saveAndFlush(dato);
+            }
+        } catch (Exception e) {
+            salida = null;
+            logger.error("Error al guardar dato: {}", e.toString());
+            logger.debug("Error al guardar dato: {}", e.toString(), e);
+        }
+        return salida;
     }
 
     @Override
     @Transactional
     public boolean eliminar(Dato dato) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean ok = false;
+        try {
+            if (dato != null) {
+                datoRepository.delete(dato);
+                ok = true;
+            }
+        } catch (Exception e) {
+            ok = false;
+            logger.error("Error al eliminar dato: {}", e.toString());
+            logger.debug("Error al eliminar dato: {}", e.toString(), e);
+        }
+        return ok;
     }
 }

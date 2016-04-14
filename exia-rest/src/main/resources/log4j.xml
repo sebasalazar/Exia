@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+    <appender name="ROOT_APPENDER_EXIA_REST" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Append" value="true" />
+        <param name="File" value="${path.logs}${file.exiarator}exia${file.exiarator}rest${file.exiarator}exia_rest.log" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd/MM/yyyy}; %d{HH:mm:ss}; %p; %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="ERROR_APPENDER_EXIA_REST" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Append" value="true" />
+        <param name="File" value="${path.logs}${file.exiarator}exia${file.exiarator}rest${file.exiarator}error.log" />
+        <param name="threshold" value="error" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd/MM/yyyy}; %d{HH:mm:ss}; %p; %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="DEBUG_APPENDER_EXIA_REST" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Append" value="true" /> 
+        <param name="File" value="${path.logs}${file.exiarator}exia${file.exiarator}rest${file.exiarator}debug.log" />
+        <param name="threshold" value="debug" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd/MM/yyyy}; %d{HH:mm:ss}; %p; {%C->%M} %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="INFO_APPENDER_EXIA_REST" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Append" value="false" />
+        <param name="File" value="${path.logs}${file.exiarator}exia${file.exiarator}rest${file.exiarator}info.log" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd/MM/yyyy}; %d{HH:mm:ss}; %p; %m%n" />
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="info" />
+            <param name="LevelMax" value="warn" />
+        </filter>
+    </appender>
+    
+    <appender name="CXF_APPENDER_EXIA" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Append" value="true" />
+        <param name="File" value="${path.logs}${file.exiarator}exia${file.exiarator}rest${file.exiarator}cxf.log" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd/MM/yyyy}; %d{HH:mm:ss}; %p; %m%n" />
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="info" />
+            <param name="LevelMax" value="debug" />
+        </filter>
+    </appender>
+
+    <logger name="cl.sebastian.exia">
+        <level value="DEBUG" />
+        <appender-ref ref="INFO_APPENDER_EXIA_REST" />
+        <appender-ref ref="ERROR_APPENDER_EXIA_REST" />
+        <appender-ref ref="DEBUG_APPENDER_EXIA_REST" />
+    </logger>
+
+    <root>
+        <!-- Debería cambiarse por FATAL en producción. -->
+        <level value="FATAL" />
+        <appender-ref ref="ROOT_APPENDER_EXIA_REST" />
+    </root>
+
+</log4j:configuration>
