@@ -9,6 +9,8 @@ import javax.ws.rs.core.Response;
  */
 public interface ExiaRest {
 
+    public Response consultarDatosPorCodigo(Integer codigo);
+
     public Response consultarDatos();
 
     public Response consultarDatos(String rut);

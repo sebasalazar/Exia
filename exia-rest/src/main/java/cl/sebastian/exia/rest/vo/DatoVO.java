@@ -16,6 +16,7 @@ public class DatoVO extends BaseBean {
     private Long id = null;
     private Date fecha = null;
     private String ip = null;
+    private Integer codigo = null;
     private String nombre = null;
     private String rut = null;
     private BigDecimal valor = null;
@@ -47,6 +48,15 @@ public class DatoVO extends BaseBean {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    @ApiModelProperty(required = true, value = "Código único.")
+    public Integer getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
     }
 
     @ApiModelProperty(required = true, value = "Nombre de quien envió el dato.")

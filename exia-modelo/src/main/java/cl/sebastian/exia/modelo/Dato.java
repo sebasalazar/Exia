@@ -32,6 +32,8 @@ public class Dato extends BaseBean {
     private Date fecha = new Date();
     @Column(name = "ip", nullable = false)
     private String ip = null;
+    @Column(name = "codigo", nullable = false, unique = true)
+    private Integer codigo = null;
     @Column(name = "nombre", nullable = false)
     private String nombre = null;
     @Column(name = "rut", nullable = false)
@@ -65,6 +67,14 @@ public class Dato extends BaseBean {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public Integer getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
     }
 
     public String getNombre() {

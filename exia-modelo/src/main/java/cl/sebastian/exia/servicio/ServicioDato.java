@@ -11,6 +11,8 @@ public interface ServicioDato {
 
     public Dato consultarDato(Long id);
 
+    public Dato consultarDatoPorCodigo(Integer codigo);
+
     public List<Dato> consultarDatos();
 
     public List<Dato> consultarDatos(Integer rut);

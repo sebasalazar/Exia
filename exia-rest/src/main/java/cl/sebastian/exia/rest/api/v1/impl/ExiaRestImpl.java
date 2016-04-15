@@ -47,11 +47,38 @@ public class ExiaRestImpl implements ExiaRest, Serializable {
 
     @Override
     @GET
+    @Path("/consultar/dato/{codigo}")
+    @ApiOperation(value = "Consulta el dato por su código")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Respuesta con los datos", response = DatoVO.class),
+        @ApiResponse(code = 404, message = "No existen datos", response = RespuestaVO.class),
+        @ApiResponse(code = 500, message = "Error interno del servidor", response = RespuestaVO.class)
+    })
+    public Response consultarDatosPorCodigo(
+            @ApiParam(value = "Código para la búsqueda", example = "17", required = true)
+            @PathParam("codigo") Integer codigo) {
+        Response respuesta = RestUtils.error404("No se ha encontrado el dato");
+        try {
+            Dato dato = servicioDato.consultarDatoPorCodigo(codigo);
+            if (dato != null) {
+                DatoVO datoVO = RestHelperUtils.convertir(dato);
+                if (datoVO != null) {
+                    respuesta = Response.ok(datoVO).build();
+                }
+            }
+        } catch (Exception e) {
+            respuesta = RestUtils.error500(e);
+            logger.error("Error al consultar dato: {}", e.toString());
+            logger.debug("Error al consultar dato: {}", e.toString(), e);
+        }
+        return respuesta;
+    }
+
+    @Override
+    @GET
     @Path("/consultar/datos")
     @ApiOperation(value = "Consulta los datos existentes en el sistema",
-            notes = "Trae todos los datos ordenados por fecha descendentemente",
-            responseContainer = "List",
-            response = DatoVO.class)
+            notes = "Trae todos los datos ordenados por fecha descendentemente")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Respuesta con los datos", responseContainer = "List", response = DatoVO.class),
         @ApiResponse(code = 404, message = "No existen datos", response = RespuestaVO.class),
@@ -165,5 +192,4 @@ public class ExiaRestImpl implements ExiaRest, Serializable {
         }
         return respuesta;
     }
-
 }

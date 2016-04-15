@@ -40,6 +40,21 @@ public class ServicioDatoImpl implements ServicioDato, Serializable {
     }
 
     @Override
+    public Dato consultarDatoPorCodigo(Integer codigo) {
+        Dato dato = null;
+        try {
+            if (codigo != null) {
+                dato = datoRepository.findByCodigo(codigo);
+            }
+        } catch (Exception e) {
+            dato = null;
+            logger.error("Error al consultar dato: {}", e.toString());
+            logger.debug("Error al consultar dato: {}", e.toString(), e);
+        }
+        return dato;
+    }
+
+    @Override
     public List<Dato> consultarDatos() {
         List<Dato> datos = new ArrayList<Dato>();
         try {

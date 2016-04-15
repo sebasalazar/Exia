@@ -16,14 +16,15 @@ import org.slf4j.LoggerFactory;
  * @author Sebastián Salazar Molina
  */
 public class RestHelperUtils implements Serializable {
-    
+
     private static final long serialVersionUID = 1333194089290520576L;
     private static final Logger logger = LoggerFactory.getLogger(RestHelperUtils.class);
-    
+
     public static DatoVO convertir(Dato dato) {
         DatoVO salida = null;
         if (dato != null) {
             salida = new DatoVO();
+            salida.setCodigo(dato.getCodigo());
             salida.setFecha(dato.getFecha());
             salida.setId(dato.getId());
             salida.setIp(StringUtils.trimToEmpty(dato.getIp()));
@@ -35,7 +36,7 @@ public class RestHelperUtils implements Serializable {
         }
         return salida;
     }
-    
+
     public static List<DatoVO> convertirDatos(List<Dato> datos) {
         List<DatoVO> lista = new ArrayList<DatoVO>();
         if (datos != null) {

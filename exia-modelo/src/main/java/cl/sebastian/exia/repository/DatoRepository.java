@@ -14,6 +14,13 @@ public interface DatoRepository extends JpaRepository<Dato, Long> {
 
     /**
      *
+     * @param codigo Código único
+     * @return Objeto Dato
+     */
+    public Dato findByCodigo(Integer codigo);
+
+    /**
+     *
      * @return La lista de datos ordenadas por fecha de forma descendente.
      */
     public List<Dato> findByOrderByFechaDesc();
