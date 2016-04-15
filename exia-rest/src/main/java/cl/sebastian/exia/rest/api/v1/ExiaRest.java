@@ -15,5 +15,5 @@ public interface ExiaRest {
 
     public Response consultarDatos(String rut);
 
-    public Response guardarDatos(String fecha, String nombre, String rut, BigDecimal valor, Double latitud, Double longitud);
+    public Response guardarDatos(Integer codigo, String fecha, String nombre, String rut, BigDecimal valor, Double latitud, Double longitud);
 }

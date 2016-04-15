@@ -148,6 +148,8 @@ public class ExiaRestImpl implements ExiaRest, Serializable {
         @ApiResponse(code = 500, message = "Error interno del servidor", response = RespuestaVO.class)
     })
     public Response guardarDatos(
+            @ApiParam(value = "Código único", example = "17", required = true)
+            @QueryParam("codigo") Integer codigo,
             @ApiParam(value = "Fecha del dato en formato: yyyy-MM-dd HH:mm:ss", example = "2016-04-14 18:25:52", required = true)
             @QueryParam("fecha") String fechaStr,
             @ApiParam(value = "Nombre de quien guarda el dato", example = "Juan Peréz", required = true)
@@ -165,15 +167,26 @@ public class ExiaRestImpl implements ExiaRest, Serializable {
             Integer rutNum = RutUtils.parseRut(rut);
             Date fecha = FechaUtils.crearFecha(fechaStr, "yyyy-MM-dd HH:mm:ss");
 
-            if (rutNum != null && fecha != null) {
-                Dato dato = new Dato();
-                dato.setFecha(fecha);
-                dato.setIp(RestUtils.obtenerIp());
-                dato.setLatitud(latitud);
-                dato.setLongitud(longitud);
-                dato.setNombre(StringUtils.trimToEmpty(nombre));
-                dato.setRut(rutNum);
-                dato.setValor(valor);
+            if (rutNum != null && fecha != null && codigo != null) {
+                Dato dato = servicioDato.consultarDatoPorCodigo(codigo);
+                if (dato == null) {
+                    dato = new Dato();
+                    dato.setFecha(fecha);
+                    dato.setIp(RestUtils.obtenerIp());
+                    dato.setLatitud(latitud);
+                    dato.setLongitud(longitud);
+                    dato.setNombre(StringUtils.trimToEmpty(nombre));
+                    dato.setRut(rutNum);
+                    dato.setValor(valor);
+                } else {
+                    dato.setFecha(fecha);
+                    dato.setIp(RestUtils.obtenerIp());
+                    dato.setLatitud(latitud);
+                    dato.setLongitud(longitud);
+                    dato.setNombre(StringUtils.trimToEmpty(nombre));
+                    dato.setRut(rutNum);
+                    dato.setValor(valor);
+                }
 
                 Dato salida = servicioDato.guardar(dato);
                 if (salida != null) {
