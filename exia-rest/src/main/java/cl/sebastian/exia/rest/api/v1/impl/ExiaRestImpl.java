@@ -171,6 +171,7 @@ public class ExiaRestImpl implements ExiaRest, Serializable {
                 Dato dato = servicioDato.consultarDatoPorCodigo(codigo);
                 if (dato == null) {
                     dato = new Dato();
+                    dato.setCodigo(codigo);
                     dato.setFecha(fecha);
                     dato.setIp(RestUtils.obtenerIp());
                     dato.setLatitud(latitud);
